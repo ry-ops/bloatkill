@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/banner.svg" alt="bloatkill: Windows storage cleanup reference: a zero-dependency dashboard" width="100%"></p>
+
 # 💀 bloatkill
 
 > Windows storage remediation reference — sysadmin-grade, terminal-aesthetic, zero dependencies.
@@ -114,9 +116,14 @@ bloatkill/
 ## Related Projects
 
 - [git-steer](https://github.com/ry-ops/git-steer) — GitHub autonomy engine & security posture dashboard
-- [git-steer-state](https://github.com/ry-ops/git-steer-state) — Live security dashboard
+- [git-steer](https://github.com/ry-ops/git-steer) — Self-hosting GitHub autonomy engine
 - [ry-ops.dev](https://ry-ops.dev) — Infrastructure automation blog
 
 ---
 
 *Part of the ry-ops infrastructure automation suite. Always test in non-prod.* 💀
+
+<!-- org-footer -->
+---
+
+<p align="center"><sub>Part of <a href="https://github.com/ry-ops">ry-ops</a> · building the pipes between infrastructure, automation, and observability · built by <a href="https://github.com/ry-ops">ry-ops</a></sub></p>
