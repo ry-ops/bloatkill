@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380" role="img" aria-labelledby="t d">
+  <title id="t">bloatkill: reclaim Windows disk space, safely</title>
+  <desc id="d">Two notorious Windows folders, WinSxS and the Installer cache, eat tens of gigabytes. bloatkill shows the right cleanup commands in the right order with a risk badge on each, and the disk's used space shrinks as space is reclaimed.</desc>
+  <defs><linearGradient id="title" x1="0" x2="1"><stop offset="0" stop-color="#ff5c6e"/><stop offset=".5" stop-color="#ff9f1c"/><stop offset="1" stop-color="#3ddc84"/></linearGradient></defs>
+  <style>
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; fill:#d6f5e3; }
+    .muted { fill:#6b8b7a; } .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    @keyframes bloat { 0%,16.67% { width:300px; opacity:1 } 38.89%,95.56% { width:70px; opacity:1 } 100% { width:300px; } } .bloat { animation: bloat 9.0s infinite; }
+    @keyframes freed { 0%,16.67% { width:0; } 38.89%,95.56% { width:230px; } 100% { width:0; } } .freed { animation: freed 9.0s infinite; }
+    @keyframes num { 0%,22.22% { opacity:0; } 42.22%,95.56% { opacity:1; } 100% { opacity:0; } } .num { animation: num 9.0s infinite; }
+    @keyframes blink { 0%,100% { opacity:.6 } 50% { opacity:1 } } .blink { animation: blink 1.5s infinite; }
+    @keyframes b0 { 0%,50.00% { opacity:0; transform:translateY(6px); } 55.56%,95.56% { opacity:1; transform:translateY(0); } 100% { opacity:0; } } .b0 { animation:b0 9.0s infinite; }
+    @keyframes b1 { 0%,53.33% { opacity:0; transform:translateY(6px); } 58.89%,95.56% { opacity:1; transform:translateY(0); } 100% { opacity:0; } } .b1 { animation:b1 9.0s infinite; }
+    @keyframes b2 { 0%,56.67% { opacity:0; transform:translateY(6px); } 62.22%,95.56% { opacity:1; transform:translateY(0); } 100% { opacity:0; } } .b2 { animation:b2 9.0s infinite; }
+    @keyframes b3 { 0%,60.00% { opacity:0; transform:translateY(6px); } 65.56%,95.56% { opacity:1; transform:translateY(0); } 100% { opacity:0; } } .b3 { animation:b3 9.0s infinite; }
+    @media (prefers-reduced-motion: reduce) { * { animation:none !important; } .bloat{width:70px} .freed{width:230px} .num{opacity:1} }
+  </style>
+  <rect width="960" height="380" rx="20" fill="#07100b"/>
+  <text x="40" y="60" font-size="42" font-weight="800" class="mono" style="fill:url(#title)">💀 bloatkill</text>
+  <text x="42" y="90" font-size="15" class="mono muted">WINDOWS STORAGE REMEDIATION — the right command, the right risk.</text>
+
+  <!-- disk bar -->
+  <text x="40" y="150" font-size="12" class="mono muted">C:\ DRIVE</text>
+  <rect x="40" y="160" width="520" height="40" rx="6" fill="#0d1c14" stroke="#1d3b2a"/>
+  <!-- system (static) -->
+  <rect x="42" y="162" width="150" height="36" rx="4" fill="#1d3b2a"/>
+  <text x="117" y="184" text-anchor="middle" font-size="11" class="mono muted">system</text>
+  <!-- bloat shrinking -->
+  <rect class="bloat" x="192" y="162" height="36" rx="4" fill="#ff5c6e" fill-opacity=".35"/>
+  <!-- freed growing -->
+  <rect class="freed" x="264" y="162" height="36" rx="4" fill="#3ddc84" fill-opacity=".25"/>
+  <text class="num mono" x="560" y="150" text-anchor="end" font-size="13" font-weight="800" style="fill:#3ddc84">+20 GB freed</text>
+
+  <!-- offenders -->
+  <g class="blink">
+  <rect x="40" y="224" width="250" height="56" rx="8" fill="#140a0c" stroke="#ff5c6e" stroke-opacity=".5"/>
+  <text x="56" y="246" font-size="12" class="mono" style="fill:#ff9ba3">C:\Windows\WinSxS</text>
+  <text x="56" y="266" font-size="11" class="mono muted">Component Store · 8–15 GB</text>
+  </g>
+  <rect x="310" y="224" width="250" height="56" rx="8" fill="#140a0c" stroke="#ff9f1c" stroke-opacity=".5"/>
+  <text x="326" y="246" font-size="12" class="mono" style="fill:#ffc879">C:\Windows\Installer</text>
+  <text x="326" y="266" font-size="11" class="mono muted">MSI/MSP cache · 3–12 GB</text>
+
+  <!-- right: badges -->
+  <text x="560" y="246" font-size="12" class="mono muted">EVERY METHOD IS</text>
+  <text x="560" y="266" font-size="12" class="mono muted">RISK-RATED:</text>
+  <g class="b0"><rect x="560" y="300" width="84" height="26" rx="6" fill="#3ddc84" fill-opacity=".15" stroke="#3ddc84"/><text x="602" y="317" text-anchor="middle" font-size="11" font-weight="800" class="mono" style="fill:#3ddc84">SAFE</text></g><g class="b1"><rect x="652" y="300" width="84" height="26" rx="6" fill="#ffd500" fill-opacity=".15" stroke="#ffd500"/><text x="694" y="317" text-anchor="middle" font-size="11" font-weight="800" class="mono" style="fill:#ffd500">LOW</text></g><g class="b2"><rect x="744" y="300" width="84" height="26" rx="6" fill="#ff9f1c" fill-opacity=".15" stroke="#ff9f1c"/><text x="786" y="317" text-anchor="middle" font-size="11" font-weight="800" class="mono" style="fill:#ff9f1c">MEDIUM</text></g><g class="b3"><rect x="836" y="300" width="84" height="26" rx="6" fill="#ff5c6e" fill-opacity=".15" stroke="#ff5c6e"/><text x="878" y="317" text-anchor="middle" font-size="11" font-weight="800" class="mono" style="fill:#ff5c6e">DANGER</text></g>
+  <text x="40" y="356" font-size="12" class="mono muted">8 methods · one-click copy · zero dependencies · runs from one index.html</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480" role="img" aria-labelledby="t d">
+  <title id="t">bloatkill's 8 cleanup methods, risk-rated</title>
+  <desc id="d">Eight cleanup methods across two folders. WinSxS: a safe PowerShell size audit, Disk Cleanup (low), DISM StartComponentCleanup (low), and DISM ResetBase (danger, irreversible). Installer: PowerShell orphan detection (safe), PatchCleaner (low, recommended), Disk Cleanup (low), and msizap (medium, deprecated).</desc>
+  <style>
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; fill:#d6f5e3; }
+    .muted { fill:#6b8b7a; } .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    
+    @media (prefers-reduced-motion: reduce) { * { animation:none !important; } }
+  </style>
+  <rect width="960" height="480" rx="20" fill="#07100b"/>
+  <text x="40" y="54" font-size="26" font-weight="800" class="mono">8 methods, every one risk-rated</text>
+  <text x="40" y="80" font-size="14" class="mono muted">From safe audits to the one irreversible nuke — so you know before you run it.</text>
+  <text x="40" y="150" font-size="14" font-weight="700" class="mono">WinSxS — Component Store</text><g class="m0">
+          <rect x="40" y="168" width="400" height="56" rx="10" fill="#0d1c14" stroke="#3ddc84" stroke-opacity=".5"/>
+          <rect x="40" y="168" width="5" height="56" rx="2" fill="#3ddc84"/>
+          <text x="58" y="192" font-size="13" font-weight="600" class="mono">PowerShell size audit</text>
+          <text x="58" y="211" font-size="10.5" class="mono muted">baseline before any cleanup</text>
+          <rect x="340" y="184" width="86" height="24" rx="6" fill="#3ddc84" fill-opacity=".15" stroke="#3ddc84"/>
+          <text x="383" y="200" text-anchor="middle" font-size="10.5" font-weight="800" class="mono" style="fill:#3ddc84">SAFE</text>
+        </g><g class="m1">
+          <rect x="40" y="236" width="400" height="56" rx="10" fill="#0d1c14" stroke="#ffd500" stroke-opacity=".5"/>
+          <rect x="40" y="236" width="5" height="56" rx="2" fill="#ffd500"/>
+          <text x="58" y="260" font-size="13" font-weight="600" class="mono">Disk Cleanup (cleanmgr)</text>
+          <text x="58" y="279" font-size="10.5" class="mono muted">"Windows Update Cleanup"</text>
+          <rect x="340" y="252" width="86" height="24" rx="6" fill="#ffd500" fill-opacity=".15" stroke="#ffd500"/>
+          <text x="383" y="268" text-anchor="middle" font-size="10.5" font-weight="800" class="mono" style="fill:#ffd500">LOW</text>
+        </g><g class="m2">
+          <rect x="40" y="304" width="400" height="56" rx="10" fill="#0d1c14" stroke="#ffd500" stroke-opacity=".5"/>
+          <rect x="40" y="304" width="5" height="56" rx="2" fill="#ffd500"/>
+          <text x="58" y="328" font-size="13" font-weight="600" class="mono">DISM StartComponentCleanup</text>
+          <text x="58" y="347" font-size="10.5" class="mono muted">removes superseded components</text>
+          <rect x="340" y="320" width="86" height="24" rx="6" fill="#ffd500" fill-opacity=".15" stroke="#ffd500"/>
+          <text x="383" y="336" text-anchor="middle" font-size="10.5" font-weight="800" class="mono" style="fill:#ffd500">LOW</text>
+        </g><g class="m3">
+          <rect x="40" y="372" width="400" height="56" rx="10" fill="#0d1c14" stroke="#ff5c6e" stroke-opacity=".5"/>
+          <rect x="40" y="372" width="5" height="56" rx="2" fill="#ff5c6e"/>
+          <text x="58" y="396" font-size="13" font-weight="600" class="mono">DISM ResetBase</text>
+          <text x="58" y="415" font-size="10.5" class="mono muted">irreversible — no update rollback</text>
+          <rect x="340" y="388" width="86" height="24" rx="6" fill="#ff5c6e" fill-opacity=".15" stroke="#ff5c6e"/>
+          <text x="383" y="404" text-anchor="middle" font-size="10.5" font-weight="800" class="mono" style="fill:#ff5c6e">DANGER</text>
+        </g>
+  <text x="500" y="150" font-size="14" font-weight="700" class="mono">Installer — MSI/MSP cache</text><g class="m4">
+          <rect x="500" y="168" width="400" height="56" rx="10" fill="#0d1c14" stroke="#3ddc84" stroke-opacity=".5"/>
+          <rect x="500" y="168" width="5" height="56" rx="2" fill="#3ddc84"/>
+          <text x="518" y="192" font-size="13" font-weight="600" class="mono">PowerShell orphan detection</text>
+          <text x="518" y="211" font-size="10.5" class="mono muted">cross-checks the registry</text>
+          <rect x="800" y="184" width="86" height="24" rx="6" fill="#3ddc84" fill-opacity=".15" stroke="#3ddc84"/>
+          <text x="843" y="200" text-anchor="middle" font-size="10.5" font-weight="800" class="mono" style="fill:#3ddc84">SAFE</text>
+        </g><g class="m5">
+          <rect x="500" y="236" width="400" height="56" rx="10" fill="#0d1c14" stroke="#ffd500" stroke-opacity=".5"/>
+          <rect x="500" y="236" width="5" height="56" rx="2" fill="#ffd500"/>
+          <text x="518" y="260" font-size="13" font-weight="600" class="mono">PatchCleaner (GUI)</text>
+          <text x="518" y="279" font-size="10.5" class="mono muted">recommended — move, don't delete</text>
+          <rect x="800" y="252" width="86" height="24" rx="6" fill="#ffd500" fill-opacity=".15" stroke="#ffd500"/>
+          <text x="843" y="268" text-anchor="middle" font-size="10.5" font-weight="800" class="mono" style="fill:#ffd500">LOW</text>
+        </g><g class="m6">
+          <rect x="500" y="304" width="400" height="56" rx="10" fill="#0d1c14" stroke="#ffd500" stroke-opacity=".5"/>
+          <rect x="500" y="304" width="5" height="56" rx="2" fill="#ffd500"/>
+          <text x="518" y="328" font-size="13" font-weight="600" class="mono">Disk Cleanup (cleanmgr)</text>
+          <text x="518" y="347" font-size="10.5" class="mono muted">temp variants only</text>
+          <rect x="800" y="320" width="86" height="24" rx="6" fill="#ffd500" fill-opacity=".15" stroke="#ffd500"/>
+          <text x="843" y="336" text-anchor="middle" font-size="10.5" font-weight="800" class="mono" style="fill:#ffd500">LOW</text>
+        </g><g class="m7">
+          <rect x="500" y="372" width="400" height="56" rx="10" fill="#0d1c14" stroke="#ff9f1c" stroke-opacity=".5"/>
+          <rect x="500" y="372" width="5" height="56" rx="2" fill="#ff9f1c"/>
+          <text x="518" y="396" font-size="13" font-weight="600" class="mono">msizap.exe</text>
+          <text x="518" y="415" font-size="10.5" class="mono muted">deprecated — legacy only</text>
+          <rect x="800" y="388" width="86" height="24" rx="6" fill="#ff9f1c" fill-opacity=".15" stroke="#ff9f1c"/>
+          <text x="843" y="404" text-anchor="middle" font-size="10.5" font-weight="800" class="mono" style="fill:#ff9f1c">MEDIUM</text>
+        </g>
+  <text x="40" y="462" font-size="12" class="mono muted">⚠ Always run elevated. Never hand-delete files inside WinSxS — Windows manages it.</text>
+</svg>
