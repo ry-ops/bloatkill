@@ -1,127 +1,75 @@
-<p align="center"><img src="docs/banner.svg" alt="bloatkill: Windows storage cleanup reference: a zero-dependency dashboard" width="100%"></p>
+<p align="center">
+  <img src="docs/hero.svg" width="100%" alt="bloatkill: two Windows folders, WinSxS and the Installer cache, eat tens of GB; the disk's used space shrinks as space is reclaimed, with SAFE / LOW / MEDIUM / DANGER badges on every method.">
+</p>
 
-# 💀 bloatkill
+<h1 align="center">💀 bloatkill</h1>
 
-> Windows storage remediation reference — sysadmin-grade, terminal-aesthetic, zero dependencies.
+<p align="center"><b>Windows storage remediation reference — sysadmin-grade, terminal-aesthetic, zero dependencies.</b><br>The right cleanup commands, in the right order, with the right risk context.</p>
 
-**Live → [ry-ops.github.io/bloatkill](https://ry-ops.github.io/bloatkill)**
+<p align="center">
+  <a href="https://ry-ops.github.io/bloatkill"><img src="https://img.shields.io/badge/live-ry--ops.github.io%2Fbloatkill-3ddc84" alt="Live"></a>
+  <img src="https://img.shields.io/badge/dependencies-zero-3ddc84" alt="Zero dependencies">
+  <img src="https://img.shields.io/badge/methods-8-ff9f1c" alt="8 methods">
+  <img src="https://img.shields.io/badge/one%20file-index.html-3ec7ff" alt="Single file">
+</p>
+
+<p align="center"><b>Live → <a href="https://ry-ops.github.io/bloatkill">ry-ops.github.io/bloatkill</a></b></p>
 
 ---
 
-## What is bloatkill?
+## What it is
 
-**bloatkill** is a static reference dashboard for auditing and cleaning two of the most notorious Windows storage offenders:
+A static dashboard for auditing and cleaning the two biggest Windows storage offenders, without accidentally breaking your system's ability to repair or roll back updates:
 
-| Folder | Path | Typical Size |
-|--------|------|-------------|
+| Folder | Path | Typical size |
+|---|---|---|
 | Component Store | `C:\Windows\WinSxS` | 8–15 GB |
-| Installer Cache | `C:\Windows\Installer` | 3–12 GB |
+| Installer cache | `C:\Windows\Installer` | 3–12 GB |
 
-It surfaces the right cleanup commands, in the right order, with the right risk context — so you don't accidentally nuke your system's ability to repair or roll back updates.
+## The 8 methods, risk-rated
 
-Part of the [ry-ops](https://ry-ops.dev) infrastructure automation suite, alongside [git-steer](https://github.com/ry-ops/git-steer).
+<p align="center">
+  <img src="docs/methods.svg" width="100%" alt="Eight cleanup methods across the two folders, each with a SAFE / LOW / MEDIUM / DANGER badge.">
+</p>
 
----
+Every method carries a risk badge and inline context, and copies to your clipboard in one click. The one you must think twice about is **`DISM ResetBase`** — it's irreversible and permanently disables update rollback.
 
-## Features
+## Use it
 
-- 🗂 **Two-tab interface** — WinSxS and Installer, each with full context
-- 🔧 **8 cleanup methods** — from safe read-only audits to aggressive irreversible nukes
-- 🏷 **Risk badges** — SAFE / LOW RISK / MEDIUM / DANGER on every method
-- 📋 **One-click copy** — every command copies to clipboard instantly
-- ⚠️ **Inline warnings** — risk context baked in so you know what you're running
-- 📱 **Fully responsive** — works on mobile, tablet, and desktop
-- ⚡ **Zero dependencies** — single `index.html`, no build step, no framework
+1. Open **[ry-ops.github.io/bloatkill](https://ry-ops.github.io/bloatkill)** (or `index.html` locally).
+2. Pick the **WinSxS** or **Installer** tab.
+3. Expand a method, read the risk, hit **COPY**.
+4. Run it in an **elevated** PowerShell or CMD session.
 
----
-
-## Cleanup Methods
-
-### WinSxS — Component Store
-
-| Method | Risk | Notes |
-|--------|------|-------|
-| PowerShell size audit | 🟢 SAFE | Baseline measurement before any cleanup |
-| Disk Cleanup (`cleanmgr`) | 🟡 LOW | Select "Windows Update Cleanup" in the UI |
-| DISM `StartComponentCleanup` | 🟡 LOW | Removes superseded components after 30-day window |
-| DISM `ResetBase` | 🔴 DANGER | Irreversible — disables update rollback permanently |
-
-### Installer — MSI/MSP Cache
-
-| Method | Risk | Notes |
-|--------|------|-------|
-| PowerShell orphan detection | 🟢 SAFE | Cross-references registry — review before deleting |
-| PatchCleaner (GUI) | 🟡 LOW | Recommended — move orphans to another drive first |
-| Disk Cleanup (`cleanmgr`) | 🟡 LOW | Limited — clears temp variants only |
-| `msizap.exe` | 🟠 MEDIUM | Deprecated — legacy systems only |
-
----
-
-## Usage
-
-### On the dashboard
-
-1. Visit **[ry-ops.github.io/bloatkill](https://ry-ops.github.io/bloatkill)**
-2. Select a folder tab — **WinSxS** or **Installer**
-3. Click any method to expand it
-4. Hit **COPY** to grab the command
-5. Run in an **elevated PowerShell or CMD session**
-
-### Direct commands
-
-Always start with a safe audit before running any cleanup:
+**Always start with a safe audit:**
 
 ```powershell
-# Audit WinSxS size first
+# WinSxS size, before touching anything
 Get-ChildItem C:\Windows\WinSxS | Measure-Object -Property Length -Sum |
   Select-Object @{N="Size(GB)";E={[math]::Round($_.Sum/1GB,2)}}
 
-# Safe WinSxS cleanup (recommended starting point)
+# The recommended safe WinSxS cleanup
 Dism.exe /online /Cleanup-Image /StartComponentCleanup
-
-# Detect Installer orphans before touching anything
-$valid = Get-ChildItem "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData" -Recurse |
-  Where-Object { $_.Property -contains "LocalPackage" } |
-  ForEach-Object { (Get-ItemProperty $_.PSPath).LocalPackage }
-
-Get-ChildItem "C:\Windows\Installer\*.ms?" |
-  Where-Object { $_.FullName -notin $valid } |
-  Select-Object FullName, @{N="MB";E={[math]::Round($_.Length/1MB,1)}}
 ```
 
-> ⚠️ **Always run as Administrator. Never manually delete files inside WinSxS.**
+> ⚠️ **Run as Administrator. Never manually delete files inside WinSxS — Windows manages it.**
 
----
+## Deploy
 
-## Deployment
-
-This is a single static `index.html` — no build step, no Node, no Ruby, no dependencies.
-
-Hosted on GitHub Pages via **Deploy from branch** → `main` → `/ (root)`.
-
-To run locally just open `index.html` in any browser.
-
----
-
-## Project Structure
+One static `index.html`: no build, no framework, no dependencies. Hosted on GitHub Pages (**Deploy from branch → `main` → `/`**). To run locally, just open the file.
 
 ```
 bloatkill/
-├── index.html    # entire app — HTML, CSS, JS in one file
-└── README.md
+├── index.html    # the whole app — HTML, CSS, JS in one file
+└── docs/         # the diagrams above
 ```
 
----
+## Related
 
-## Related Projects
+- [git-steer](https://github.com/ry-ops/git-steer) — GitHub fleet health, run entirely on GitHub
+- [ry-ops.dev](https://ry-ops.dev) — infrastructure automation notes
 
-- [git-steer](https://github.com/ry-ops/git-steer) — GitHub autonomy engine & security posture dashboard
-- [git-steer](https://github.com/ry-ops/git-steer) — Self-hosting GitHub autonomy engine
-- [ry-ops.dev](https://ry-ops.dev) — Infrastructure automation blog
-
----
-
-*Part of the ry-ops infrastructure automation suite. Always test in non-prod.* 💀
+<p align="center"><sub><i>Part of the ry-ops infrastructure suite. Always test in non-prod.</i> 💀</sub></p>
 
 <!-- org-footer -->
 ---
